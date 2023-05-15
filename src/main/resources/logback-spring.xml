@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Allows you to include your own appenders and stuff -->
+	<appender name="Console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+	</appender>
+	<!-- Allows to change log level using config map -->
+	<property name="root.level"
+		value="${AIRLINERS_REST_ROOT_LOG_LEVEL:-INFO}" />
+	<property name="org.springframework.level"
+		value="${AIRLINERS_REST_SPRING_LOG_LEVEL:-INFO}" />
+	<root level="${root.level:-INFO}">
+		<appender-ref ref="Console" />
+	</root>
+	>
+	<logger name="org.springframework"
+		level="${org.springframework.level:-INFO}" additivity="false">
+		<appender-ref ref="Console" />
+	</logger>
+</configuration>
