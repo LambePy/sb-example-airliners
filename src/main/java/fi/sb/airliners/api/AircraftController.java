@@ -14,9 +14,7 @@ import jakarta.validation.constraints.NotNull;
 
 @RestController
 class AircraftController implements AircraftApi {
-
 	private static final Logger logger = LoggerFactory.getLogger(AircraftController.class);
-
 	private final AircraftService service;
 
 	@Autowired
@@ -34,7 +32,6 @@ class AircraftController implements AircraftApi {
 	public AircraftDto createAircraft(@Valid AircraftDto aircraftDto) {
 		logger.info("Adding new aircraft");
 		return service.addAircraft(aircraftDto);
-
 	}
 
 	@Override
@@ -52,7 +49,5 @@ class AircraftController implements AircraftApi {
 	@Override
 	public void deleteAircraft(@NotNull String aircraftId) {
 		// TODO Auto-generated method stub
-
 	}
-
 }

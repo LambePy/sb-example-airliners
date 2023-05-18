@@ -39,12 +39,12 @@ class AirlinerControllerTest {
 	@Test
 	void createAirliner_saves_correct_data() {
 
-		AirlinerDto airlinerDto = new AirlinerDto("airbus", "AY", "FIN", AirlinerStatus.ACTIVE);
-		AirlinerEntity entity = new AirlinerEntity("airbus", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerDto airlinerDto = new AirlinerDto("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerEntity entity = new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
 
 		when(airlinerRepo.save(any())).thenReturn(entity);
 
-		AirlinerEntity expectedResult = new AirlinerEntity("airbus", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerEntity expectedResult = new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
 		AirlinerDto res = controller.createAirliner(airlinerDto);
 
 		assertThat(res).isNotNull();
@@ -57,14 +57,14 @@ class AirlinerControllerTest {
 	void getAllAirliners_returns_correct_airliners() {
 
 		List<AirlinerEntity> entityList = new ArrayList<>();
-		entityList.add(new AirlinerEntity("airbus", "AY", "FIN", AirlinerStatus.ACTIVE));
-		entityList.add(new AirlinerEntity("boeing", "US", "123", AirlinerStatus.DEACTIVE));
+		entityList.add(new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE));
+		entityList.add(new AirlinerEntity("Finnair", "US", "USA", AirlinerStatus.DEACTIVE));
 
 		when(airlinerRepo.findAll()).thenReturn(entityList);
 
 		List<AirlinerDto> expectedList = new ArrayList<>();
-		expectedList.add(new AirlinerDto("airbus", "AY", "FIN", AirlinerStatus.ACTIVE));
-		expectedList.add(new AirlinerDto("boeing", "US", "123", AirlinerStatus.DEACTIVE));
+		expectedList.add(new AirlinerDto("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE));
+		expectedList.add(new AirlinerDto("Finnair", "US", "USA", AirlinerStatus.DEACTIVE));
 
 		List<AirlinerDto> actualList = controller.getAllAirliners();
 
@@ -80,17 +80,17 @@ class AirlinerControllerTest {
 		String AirlinerId = "f3f00f67-4222-44a1-8bde-1c8c84755c46";
 
 		when(airlinerRepo.findById(AirlinerId))
-				.thenReturn(Optional.of(new AirlinerEntity("airbus", "AY", "FIN", AirlinerStatus.ACTIVE)));
+				.thenReturn(Optional.of(new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE)));
 		AirlinerDto dto = controller.getAirliner(AirlinerId);
-		AirlinerDto expected = new AirlinerDto("airbus", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerDto expected = new AirlinerDto("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
 
 		assertEquals(expected, dto);
 	}
 
 	@Test
 	void createAirliner_returns_correct_data() {
-		AirlinerDto airlinerDto = new AirlinerDto("airbus", "AY", "FIN", AirlinerStatus.ACTIVE);
-		AirlinerEntity entity = new AirlinerEntity("airbus", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerDto airlinerDto = new AirlinerDto("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerEntity entity = new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
 		entity.setId("f3f00f67-4222-44a1-8bde-1c8c84755c46");
 		when(airlinerRepo.save(any())).thenReturn(entity);
 

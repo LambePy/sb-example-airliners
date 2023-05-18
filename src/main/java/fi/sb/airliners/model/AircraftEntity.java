@@ -63,14 +63,21 @@ public class AircraftEntity implements Serializable {
 	protected AircraftEntity() {
 	}
 
-	public AircraftEntity(String id, String model, String manufacturer, AirlinerEntity airliner) {
+	AircraftEntity(String id, String model, String manufacturer, AirlinerEntity airliner) {
 		this.id = id;
 		this.model = model;
 		this.manufacturer = manufacturer;
 		this.airliner = airliner;
 	}
 
-	AircraftEntity(String model, String manufacturer, AirlinerEntity airliner) {
+	/**
+	 * Constructor for Unit testing
+	 * 
+	 * @param model
+	 * @param manufacturer
+	 * @param airliner
+	 */
+	public AircraftEntity(String model, String manufacturer, AirlinerEntity airliner) {
 		this(null, model, manufacturer, airliner);
 	}
 

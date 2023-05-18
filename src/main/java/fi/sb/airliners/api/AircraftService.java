@@ -34,7 +34,7 @@ public class AircraftService {
 	public AircraftDto addAircraft(final AircraftDto aircraftDto) {
 		Optional<AirlinerEntity> airliner = airlinerRepo.findById(aircraftDto.getAirlinerId());
 		if (!airliner.isPresent()) {
-			throw new NotFoundException(AirlinerEntity.class, aircraftDto.getId());
+			throw new NotFoundException(AirlinerEntity.class, aircraftDto.getAirlinerId());
 		}
 		AircraftEntity aircraft = AircraftEntity.createAircraftWith(aircraftDto, airliner.get());
 		aircraftRepo.save(aircraft);

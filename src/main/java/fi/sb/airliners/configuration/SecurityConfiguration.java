@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
-
 	/**
 	 * 
 	 * Security configuration Secured all endpoints that are not whitelisted.
@@ -28,16 +27,12 @@ public class SecurityConfiguration {
 	 */
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-
 		httpSecurity.csrf(CsrfConfigurer::disable)
 				.sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
 				.authorizeHttpRequests(req -> req.requestMatchers("/v3/api-docs", "/v3/api-docs/*", "/swagger-ui/**",
 						"/swagger-ui.html", "api/v1/**").permitAll());
-
 		httpSecurity.authorizeHttpRequests().requestMatchers(toH2Console()).permitAll();
 		httpSecurity.headers().frameOptions().sameOrigin();
-
 		return httpSecurity.build();
-
 	}
 }

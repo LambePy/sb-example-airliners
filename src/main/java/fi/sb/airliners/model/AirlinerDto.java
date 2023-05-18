@@ -44,7 +44,7 @@ public class AirlinerDto {
 	}
 
 	/**
-	 * Unit testing
+	 * Constructor for Unit testing
 	 * 
 	 * @param name
 	 * @param code

@@ -78,7 +78,7 @@ public class AirlinerEntity implements Serializable {
 	}
 
 	/**
-	 * Unit testing
+	 * Constructor for Unit testing
 	 * 
 	 * @param name
 	 * @param code

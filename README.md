@@ -51,7 +51,9 @@ OpenAPI definition can be found from
 Logging is done with SLF4J Logback
 Every API-call is logged with structured logstash format
 
+### Code formatting
 
+Code is formatted with `formatter.xml`
 
 
 # DB

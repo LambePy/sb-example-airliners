@@ -41,6 +41,18 @@ public class AircraftDto {
 		this.airlinerId = airlinerId;
 	}
 
+	/**
+	 * 
+	 * Constructor for Unit testing
+	 * 
+	 * @param model
+	 * @param manufacturer
+	 * @param airlinerId
+	 */
+	public AircraftDto(String model, String manufacturer, String airlinerId) {
+		this(null, model, manufacturer, airlinerId);
+	}
+
 	public final String getId() {
 		return id;
 	}
