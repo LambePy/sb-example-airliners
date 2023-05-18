@@ -20,22 +20,23 @@ public class AirlinerDto {
 
 	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 	private final String id;
-
 	@NotNull
 	private final String name;
-
 	@NotNull
 	private final String code;
-
 	@NotNull
 	private final String country;
-
 	private final AirlinerStatus status;
 
 	@JsonCreator
-	public AirlinerDto(@JsonProperty(value = "id", required = false) String id, @JsonProperty("name") String name,
-			@JsonProperty("code") String code, @JsonProperty("country") String country,
-			@JsonProperty("airlinerStatus") AirlinerStatus status) {
+	public AirlinerDto(
+		@JsonProperty(value = "id", required = false) String id,
+		@JsonProperty("name") String name,
+		@JsonProperty("code") String code,
+		@JsonProperty("country") String country,
+		@JsonProperty("airlinerStatus") AirlinerStatus status
+	)
+	{
 		this.id = id;
 		this.name = name;
 		this.code = code;
@@ -53,7 +54,6 @@ public class AirlinerDto {
 	 */
 	public AirlinerDto(String name, String code, String country, AirlinerStatus status) {
 		this(null, name, code, country, status);
-
 	}
 
 	public String getId() {
@@ -90,8 +90,8 @@ public class AirlinerDto {
 		if (getClass() != obj.getClass())
 			return false;
 		AirlinerDto other = (AirlinerDto) obj;
-		return Objects.equals(code, other.code) && Objects.equals(country, other.country)
-				&& Objects.equals(id, other.id) && Objects.equals(name, other.name) && status == other.status;
+		return Objects.equals(code, other.code) && Objects.equals(country, other.country) && Objects
+			.equals(id, other.id) && Objects.equals(name, other.name) && status == other.status;
 	}
 
 }

@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS airliner;
+DROP TABLE IF EXISTS airliner CASCADE;
+DROP TABLE IF EXISTS aircraft CASCADE;
+
 CREATE TABLE airliner (
   airliner_id VARCHAR(255) NOT NULL,
   airliner_code VARCHAR(10) NOT NULL,
@@ -17,7 +19,8 @@ VALUES
 ('adfb3e60-8b61-4b5d-910f-9c0408c7ec5a', 'LH', 'DE', 'Lufthansa', 'ACTIVE', '2023-05-13T10:45:00.000Z'),
 ('dbbf539a-fa25-4330-bcc3-3d3df994b8bb', 'AF', 'FR', 'Air France', 'DEACTIVE', '2023-05-12T08:15:00.000Z');
 
-DROP TABLE IF EXISTS aircraft;
+
+
 CREATE TABLE aircraft (
   aircraft_id VARCHAR(255) NOT NULL,
   created TIMESTAMP(6) NOT NULL,

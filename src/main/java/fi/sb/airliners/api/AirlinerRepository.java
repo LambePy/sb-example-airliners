@@ -16,5 +16,4 @@ import fi.sb.airliners.model.AirlinerEntity;
  */
 @Repository
 public interface AirlinerRepository extends JpaRepository<AirlinerEntity, String> {
-
 }

@@ -33,7 +33,6 @@ class AirlinerExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(AirlinerException.class)
 	public ResponseEntity<Object> handleAirlinerException(AirlinerException ex, WebRequest req) {
 		return handleException(ex, HttpStatus.INTERNAL_SERVER_ERROR, req);
-
 	}
 
 	@ExceptionHandler(RuntimeException.class)
@@ -43,27 +42,39 @@ class AirlinerExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Error.class)
 	ResponseEntity<Object> handleError(Error ex, WebRequest request) {
-		return handleException(new RuntimeException("API call resulted into error!", ex),
-				HttpStatus.INTERNAL_SERVER_ERROR, request);
+		return handleException(
+			new RuntimeException("API call resulted into error!", ex),
+			HttpStatus.INTERNAL_SERVER_ERROR,
+			request
+		);
 	}
 
-	private ResponseEntity<Object> handleException(Exception ex, HttpStatus status, WebRequest request) {
+	private ResponseEntity<Object> handleException(
+		Exception ex,
+		HttpStatus status,
+		WebRequest request
+	)
+	{
 		return handleExceptionInternal(ex, null, new HttpHeaders(), status, request);
 	}
 
 	/**
 	 * 
-	 * Override handleExceptionInternal to add AppError DTO model into automaticly
-	 * handled requests (e.g., invalid json in request)
+	 * Override handleExceptionInternal to add AppError DTO model into automaticly handled requests
+	 * (e.g., invalid json in request)
 	 */
 	@Override
-	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object obj, HttpHeaders headers,
-			HttpStatusCode status, WebRequest req) {
-
+	protected ResponseEntity<Object> handleExceptionInternal(
+		Exception ex,
+		@Nullable Object obj,
+		HttpHeaders headers,
+		HttpStatusCode status,
+		WebRequest req
+	)
+	{
 		exLogger.log(status, ex);
 		AppError errBody = ErrorBodyCreator.createFixedMessageErrorBody(status.value());
 		return super.handleExceptionInternal(ex, errBody, headers, status, req);
-
 	}
 
 }

@@ -29,7 +29,6 @@ import jakarta.persistence.Table;
 public class AircraftEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	/*
 	 * ID is auto generated UUID4 string
 	 */
@@ -38,21 +37,16 @@ public class AircraftEntity implements Serializable {
 	@GeneratedValue(generator = "UUID4")
 	@Column(name = "AIRCRAFT_ID", updatable = false, nullable = false, unique = true)
 	private String id;
-
 	@Column(name = "MODEL", length = 255, nullable = false)
 	private String model;
-
 	@Column(name = "MANUFACTURER", length = 255, nullable = false)
 	private String manufacturer;
-
 	@CreationTimestamp
 	@Column(name = "CREATED", nullable = false, updatable = false)
 	private ZonedDateTime created;
-
 	@UpdateTimestamp
 	@Column(name = "UPDATED")
 	private ZonedDateTime updated;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "AIRLINER_ID_FK", referencedColumnName = "AIRLINER_ID")
 	private AirlinerEntity airliner;
@@ -86,8 +80,16 @@ public class AircraftEntity implements Serializable {
 		this.manufacturer = aircraftDTO.getManufacturer();
 	}
 
-	public static AircraftEntity createAircraftWith(AircraftDto aircraftDTO, AirlinerEntity airlinerEntity) {
-		return new AircraftEntity(aircraftDTO.getModel(), aircraftDTO.getManufacturer(), airlinerEntity);
+	public static AircraftEntity createAircraftWith(
+		AircraftDto aircraftDTO,
+		AirlinerEntity airlinerEntity
+	)
+	{
+		return new AircraftEntity(
+			aircraftDTO.getModel(),
+			aircraftDTO.getManufacturer(),
+			airlinerEntity
+		);
 	}
 
 	public AircraftDto toAircraftDto() {
@@ -157,8 +159,8 @@ public class AircraftEntity implements Serializable {
 			return false;
 		AircraftEntity other = (AircraftEntity) obj;
 		return Objects.equals(airliner, other.airliner) && Objects.equals(created, other.created)
-				&& Objects.equals(id, other.id) && Objects.equals(manufacturer, other.manufacturer)
-				&& Objects.equals(model, other.model) && Objects.equals(updated, other.updated);
+			&& Objects.equals(id, other.id) && Objects.equals(manufacturer, other.manufacturer)
+			&& Objects.equals(model, other.model) && Objects.equals(updated, other.updated);
 	}
 
 }

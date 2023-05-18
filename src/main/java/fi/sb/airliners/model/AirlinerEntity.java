@@ -30,8 +30,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "AIRLINER")
 public class AirlinerEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
 
+	private static final long serialVersionUID = 1L;
 	/*
 	 * ID is auto generated UUID4 string
 	 */
@@ -40,36 +40,35 @@ public class AirlinerEntity implements Serializable {
 	@GenericGenerator(name = "UUID4", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "AIRLINER_ID", unique = true, updatable = false, nullable = false)
 	private String id;
-
 	@Column(name = "AIRLINER_NAME", length = 50, unique = false, nullable = false)
 	private String name;
-
 	@Column(name = "AIRLINER_CODE", length = 10, unique = false, nullable = false)
 	private String code;
-
 	@Column(name = "COUNTRY", length = 50, nullable = false)
 	private String country;
-
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "ACTIVE", nullable = false, length = 10)
 	private AirlinerStatus status = AirlinerStatus.ACTIVE;
-
 	@CreationTimestamp
 	@Column(name = "CREATED", nullable = false, updatable = false)
 	private ZonedDateTime created;
-
 	@UpdateTimestamp
 	@Column(name = "UPDATED")
 	private ZonedDateTime updated;
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "airliner", cascade = CascadeType.ALL)
 	private List<AircraftEntity> aircrafts = new ArrayList<>();
 
 	protected AirlinerEntity() {
-
 	}
 
-	public AirlinerEntity(String id, String name, String code, String country, AirlinerStatus status) {
+	public AirlinerEntity(
+		String id,
+		String name,
+		String code,
+		String country,
+		AirlinerStatus status
+	)
+	{
 		this.id = id;
 		this.name = name;
 		this.code = code;
@@ -107,9 +106,11 @@ public class AirlinerEntity implements Serializable {
 	 * @param airlinerDTO
 	 */
 	public static AirlinerEntity createAirlinerWith(AirlinerDto airlinerDTO) {
-		return new AirlinerEntity(airlinerDTO.getName(), airlinerDTO.getCountry(), airlinerDTO.getCode(),
-				airlinerDTO.getAirlinerStatus()
-
+		return new AirlinerEntity(
+			airlinerDTO.getName(),
+			airlinerDTO.getCountry(),
+			airlinerDTO.getCode(),
+			airlinerDTO.getAirlinerStatus()
 		);
 	}
 
@@ -206,8 +207,8 @@ public class AirlinerEntity implements Serializable {
 			return false;
 		}
 		AirlinerEntity other = (AirlinerEntity) obj;
-		return Objects.equals(code, other.code) && Objects.equals(country, other.country)
-				&& Objects.equals(id, other.id) && Objects.equals(name, other.name);
+		return Objects.equals(code, other.code) && Objects.equals(country, other.country) && Objects
+			.equals(id, other.id) && Objects.equals(name, other.name);
 	}
 
 }

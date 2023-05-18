@@ -21,20 +21,21 @@ public class AircraftDto {
 
 	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 	private final String id;
-
 	@Size(min = 2, max = 255)
 	private final String model;
-
 	@Size(min = 2, max = 255)
 	private final String manufacturer;
-
 	@NotNull
 	private final String airlinerId;
 
 	@JsonCreator
-	public AircraftDto(@JsonProperty(value = "id", required = false) final String id,
-			@JsonProperty("model") final String model, @JsonProperty("manufacturer") final String manufacturer,
-			@JsonProperty("airlinerId") String airlinerId) {
+	public AircraftDto(
+		@JsonProperty(value = "id", required = false) final String id,
+		@JsonProperty("model") final String model,
+		@JsonProperty("manufacturer") final String manufacturer,
+		@JsonProperty("airlinerId") String airlinerId
+	)
+	{
 		this.id = id;
 		this.model = model;
 		this.manufacturer = manufacturer;
@@ -84,7 +85,8 @@ public class AircraftDto {
 			return false;
 		AircraftDto other = (AircraftDto) obj;
 		return Objects.equals(airlinerId, other.airlinerId) && Objects.equals(id, other.id)
-				&& Objects.equals(manufacturer, other.manufacturer) && Objects.equals(model, other.model);
+			&& Objects.equals(manufacturer, other.manufacturer) && Objects
+				.equals(model, other.model);
 	}
 
 }

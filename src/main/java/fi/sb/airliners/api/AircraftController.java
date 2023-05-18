@@ -14,6 +14,7 @@ import jakarta.validation.constraints.NotNull;
 
 @RestController
 class AircraftController implements AircraftApi {
+
 	private static final Logger logger = LoggerFactory.getLogger(AircraftController.class);
 	private final AircraftService service;
 
@@ -50,4 +51,5 @@ class AircraftController implements AircraftApi {
 	public void deleteAircraft(@NotNull String aircraftId) {
 		// TODO Auto-generated method stub
 	}
+
 }

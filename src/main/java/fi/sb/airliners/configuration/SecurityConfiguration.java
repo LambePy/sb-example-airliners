@@ -13,11 +13,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
+
 	/**
 	 * 
-	 * Security configuration Secured all endpoints that are not whitelisted.
-	 * Production use you will need e.g., oAuth2Resourceserver to serve roles /
-	 * authentication levels
+	 * Security configuration Secures all endpoints that are not whitelisted. Production use you
+	 * will need e.g., oAuth2Resourceserver to serve roles / authentication levels
 	 * 
 	 * NOT INTENDED FOR PRODUCTION USE AS IT IS
 	 * 
@@ -27,12 +27,25 @@ public class SecurityConfiguration {
 	 */
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.csrf(CsrfConfigurer::disable)
-				.sessionManagement((session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)))
-				.authorizeHttpRequests(req -> req.requestMatchers("/v3/api-docs", "/v3/api-docs/*", "/swagger-ui/**",
-						"/swagger-ui.html", "api/v1/**").permitAll());
+		httpSecurity
+			.csrf(CsrfConfigurer::disable)
+			.sessionManagement(
+				(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+			)
+			.authorizeHttpRequests(
+				req -> req
+					.requestMatchers(
+						"/v3/api-docs",
+						"/v3/api-docs/*",
+						"/swagger-ui/**",
+						"/swagger-ui.html",
+						"api/v1/**"
+					)
+					.permitAll()
+			);
 		httpSecurity.authorizeHttpRequests().requestMatchers(toH2Console()).permitAll();
 		httpSecurity.headers().frameOptions().sameOrigin();
 		return httpSecurity.build();
 	}
+
 }

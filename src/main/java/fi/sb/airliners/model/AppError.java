@@ -45,7 +45,11 @@ public class AppError {
 	}
 
 	@NotNull
-	@Schema(name = "message", description = "Error message", requiredMode = Schema.RequiredMode.REQUIRED)
+	@Schema(
+		name = "message",
+		description = "Error message",
+		requiredMode = Schema.RequiredMode.REQUIRED
+	)
 	public String getMessage() {
 		return message;
 	}

@@ -26,7 +26,11 @@ public class AircraftService {
 	private final AirlinerRepository airlinerRepo;
 
 	@Autowired
-	public AircraftService(final AircraftRepository aircraftRepo, final AirlinerRepository airlinerRepo) {
+	public AircraftService(
+		final AircraftRepository aircraftRepo,
+		final AirlinerRepository airlinerRepo
+	)
+	{
 		this.aircraftRepo = aircraftRepo;
 		this.airlinerRepo = airlinerRepo;
 	}
@@ -40,4 +44,5 @@ public class AircraftService {
 		aircraftRepo.save(aircraft);
 		return aircraft.toAircraftDto();
 	}
+
 }

@@ -28,7 +28,6 @@ class AirlinerController implements AirlinerApi {
 	public AirlinerDto getAirliner(@NotNull String airlinerId) {
 		logger.debug("Fetching airliner...");
 		return service.getAirliner(airlinerId);
-
 	}
 
 	@Override
@@ -41,7 +40,6 @@ class AirlinerController implements AirlinerApi {
 	public AirlinerDto createAirliner(@Valid AirlinerDto airlinerDto) {
 		logger.debug("Creating a new airliner...");
 		return service.createAirliner(airlinerDto);
-
 	}
 
 	@Override
@@ -53,13 +51,11 @@ class AirlinerController implements AirlinerApi {
 	@Override
 	public void deleteairliner(@NotNull String aircraftId) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public List<AircraftDto> getAircrafts(@NotNull String airlinerId) {
 		return service.getAircrafts(airlinerId);
-
 	}
 
 }

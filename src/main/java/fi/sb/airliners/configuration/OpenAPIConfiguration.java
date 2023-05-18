@@ -14,7 +14,8 @@ import io.swagger.v3.oas.annotations.info.Info;
  *
  */
 @Configuration
-@OpenAPIDefinition(info = @Info(title = "Airliners API", version = "v1", description = "Airliners API"))
+@OpenAPIDefinition(
+	info = @Info(title = "Airliners API", version = "v1", description = "Airliners API")
+)
 public class OpenAPIConfiguration {
-
 }
