@@ -25,7 +25,11 @@ import jakarta.validation.constraints.NotNull;
 
 @Validated
 @Tag(name = "Aircrafts", description = "Aircraft management API")
-@RequestMapping(path = "/api/v1/aircrafts", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(
+	path = "/api/v1/aircrafts",
+	consumes = MediaType.APPLICATION_JSON_VALUE,
+	produces = MediaType.APPLICATION_JSON_VALUE
+)
 public interface AircraftApi {
 
 	/**
@@ -34,12 +38,41 @@ public interface AircraftApi {
 	 * @param aircraftId
 	 * @return
 	 */
-	@GetMapping(value = "/{aircraftId}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Aircraft retrieved succesfully"),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "404", description = "Aircraft Not found", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))) })
-	AircraftDto getAircraft(@PathVariable(name = "aircraftId", required = true) @NotNull String aircraftId);
+	@GetMapping(
+		value = "/{aircraftId}",
+		consumes = MediaType.ALL_VALUE,
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
+	@ApiResponses(value =
+	{
+		@ApiResponse(responseCode = "200", description = "Aircraft retrieved succesfully"),
+		@ApiResponse(
+			responseCode = "400",
+			description = "Bad request",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "404",
+			description = "Aircraft Not found",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "500",
+			description = "Internal server error",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		) })
+	AircraftDto getAircraft(
+		@PathVariable(name = "aircraftId", required = true) @NotNull String aircraftId
+	);
 
 	/**
 	 * Create new aircraft
@@ -50,9 +83,25 @@ public interface AircraftApi {
 	 */
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	@Operation(summary = "Create new aircraft")
-	@ApiResponses(value = { @ApiResponse(responseCode = "201", description = "Aircraft created successfully"),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))) })
+	@ApiResponses(value =
+	{
+		@ApiResponse(responseCode = "201", description = "Aircraft created successfully"),
+		@ApiResponse(
+			responseCode = "400",
+			description = "Bad request",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "500",
+			description = "Internal server error",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		) })
 	@ResponseStatus(code = HttpStatus.CREATED)
 	AircraftDto createAircraft(@Valid @RequestBody AircraftDto aircraftDto);
 
@@ -65,31 +114,113 @@ public interface AircraftApi {
 	 */
 	@PutMapping(value = "/{aircraftID}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Operation(summary = "Update aircraft")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Aircraft updated successfully"),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "404", description = "Existing aircraft Not found", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))) })
-	AircraftDto updateAircraft(@PathVariable(name = "aircraftId", required = true) @NotNull String aircraftId,
-			@Valid @RequestBody AircraftDto aircraftDto);
+	@ApiResponses(value =
+	{
+		@ApiResponse(responseCode = "200", description = "Aircraft updated successfully"),
+		@ApiResponse(
+			responseCode = "400",
+			description = "Bad request",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "404",
+			description = "Existing aircraft Not found",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "500",
+			description = "Internal server error",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		) })
+	AircraftDto updateAircraft(
+		@PathVariable(name = "aircraftId", required = true) @NotNull String aircraftId,
+		@Valid @RequestBody AircraftDto aircraftDto
+	);
 
 	/**
 	 * Get all aircrafts
 	 * 
 	 * @return
 	 */
-	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.ALL_VALUE)
+	@GetMapping(
+		value = "/all",
+		produces = MediaType.APPLICATION_JSON_VALUE,
+		consumes = MediaType.ALL_VALUE
+	)
 	@Operation(summary = "Get all saved aircrafts")
-	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Aircrafts retrieved succesfully"),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "404", description = "Aircraft Not found", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))) })
+	@ApiResponses(value =
+	{
+		@ApiResponse(responseCode = "200", description = "Aircrafts retrieved succesfully"),
+		@ApiResponse(
+			responseCode = "400",
+			description = "Bad request",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "404",
+			description = "Aircraft Not found",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "500",
+			description = "Internal server error",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		) })
 	List<AircraftDto> getAllAircrafts();
 
-	@DeleteMapping(value = "/{aircraftId}", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(
+		value = "/{aircraftId}",
+		consumes = MediaType.ALL_VALUE,
+		produces = MediaType.APPLICATION_JSON_VALUE
+	)
 	@Operation(summary = "Deletes aircraft")
-	@ApiResponses(value = { @ApiResponse(responseCode = "204", description = "Deleted aircraft"),
-			@ApiResponse(responseCode = "400", description = "Bad request", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "404", description = "Aircraft Not found", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))),
-			@ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE, schema = @Schema(implementation = AppError.class))) })
-	void deleteAircraft(@PathVariable(name = "aircraftId", required = true) @NotNull String aircraftId);
+	@ApiResponses(value =
+	{
+		@ApiResponse(responseCode = "204", description = "Deleted aircraft"),
+		@ApiResponse(
+			responseCode = "400",
+			description = "Bad request",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "404",
+			description = "Aircraft Not found",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		),
+		@ApiResponse(
+			responseCode = "500",
+			description = "Internal server error",
+			content = @Content(
+				mediaType = MediaType.APPLICATION_PROBLEM_JSON_VALUE,
+				schema = @Schema(implementation = AppError.class)
+			)
+		) })
+	void deleteAircraft(
+		@PathVariable(name = "aircraftId", required = true) @NotNull String aircraftId
+	);
+
 }

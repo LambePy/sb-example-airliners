@@ -22,4 +22,5 @@ public abstract class AirlinerException extends RuntimeException {
 	protected AirlinerException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
+
 }

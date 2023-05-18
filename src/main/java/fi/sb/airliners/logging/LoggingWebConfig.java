@@ -1,4 +1,4 @@
-package fi.sb.airliners.api.logging;
+package fi.sb.airliners.logging;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -15,4 +15,5 @@ public class LoggingWebConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loggingInterceptor);
 	}
+
 }

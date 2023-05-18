@@ -30,23 +30,22 @@ class SecurityIT {
 	private static final String API_DOCS_ENDPOINT = "/v3/api-docs";
 	private static final String API_ENDPOINT = "/api/v1/airliners";
 	private static final String FORBIDDEN_ENDPOINT = "/api/v2/";
-	private static final String AIRLINER = "{" + "  \"name\": \"Finnair\"," + "  \"code\": \"AY\","
-			+ "  \"country\": \"FIN\"," + "  \"airlinerStatus\": \"ACTIVE\"" + "}";
-
+	private static final String AIRLINER = "{" + "  \"name\": \"Finnair\","
+		+ "  \"code\": \"AY\", \"country\": \"FIN\"," + "  \"airlinerStatus\": \"ACTIVE\"" + "}";
 	private static final String CACHE_CONTROL_VALUE = "no-cache, no-store, max-age=0, must-revalidate";
 	private static final String PRAGMA_VALUE = "no-cache";
-
 	@Autowired
 	private WebApplicationContext context;
-
 	@MockBean
 	private AirlinerService airlinerService;
-
 	private MockMvc mvc;
 
 	@BeforeEach
 	void init() {
-		mvc = MockMvcBuilders.webAppContextSetup(context).apply(SecurityMockMvcConfigurers.springSecurity()).build();
+		mvc = MockMvcBuilders
+			.webAppContextSetup(context)
+			.apply(SecurityMockMvcConfigurers.springSecurity())
+			.build();
 	}
 
 	@Test
@@ -56,14 +55,18 @@ class SecurityIT {
 
 	@Test
 	void testForbiddenEndpoiIsForbidden() throws Exception {
-		mvc.perform(get(FORBIDDEN_ENDPOINT)).andExpect(status().isForbidden())
-				.andExpect(header().string(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL_VALUE))
-				.andExpect(header().string(HttpHeaders.PRAGMA, PRAGMA_VALUE));
+		mvc
+			.perform(get(FORBIDDEN_ENDPOINT))
+			.andExpect(status().isForbidden())
+			.andExpect(header().string(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL_VALUE))
+			.andExpect(header().string(HttpHeaders.PRAGMA, PRAGMA_VALUE));
 	}
 
 	@Test
 	void testApiRouteIsAllowed() throws Exception {
-		mvc.perform(post(API_ENDPOINT).content(AIRLINER).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isCreated());
+		mvc
+			.perform(post(API_ENDPOINT).content(AIRLINER).contentType(MediaType.APPLICATION_JSON))
+			.andExpect(status().isCreated());
 	}
+
 }

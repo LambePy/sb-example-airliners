@@ -29,16 +29,14 @@ public class ExceptionLogger {
 
 	/**
 	 * 
-	 * Error details may contain sensitive data. Filter out all messages from
-	 * stacktrace before logging it
+	 * Error details may contain sensitive data. Filter out all messages from stacktrace before
+	 * logging it
 	 * 
 	 * @param t
 	 * @return
 	 */
 	private String toStringWithoutMessage(Throwable t) {
-
 		StringBuilder sb = new StringBuilder();
-
 		while (t != null) {
 			sb.append(t.getClass().getName());
 			sb.append(System.lineSeparator());
@@ -50,7 +48,6 @@ public class ExceptionLogger {
 			t = t.getCause();
 		}
 		return sb.toString();
-
 	}
 
 }

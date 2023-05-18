@@ -16,7 +16,6 @@ class ErrorBodyCreator {
 
 	static AppError createFixedMessageErrorBody(int statusCode) {
 		HttpStatus httpStatus = HttpStatus.resolve(statusCode);
-
 		AppError body = new AppError();
 		if (httpStatus != null && httpStatus.is4xxClientError()) {
 			body.message(CLIENT_ERROR_MESSAGE);

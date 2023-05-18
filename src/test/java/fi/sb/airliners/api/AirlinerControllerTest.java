@@ -44,7 +44,12 @@ class AirlinerControllerTest {
 
 		when(airlinerRepo.save(any())).thenReturn(entity);
 
-		AirlinerEntity expectedResult = new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerEntity expectedResult = new AirlinerEntity(
+			"Finnair",
+			"AY",
+			"FIN",
+			AirlinerStatus.ACTIVE
+		);
 		AirlinerDto res = controller.createAirliner(airlinerDto);
 
 		assertThat(res).isNotNull();
@@ -80,7 +85,9 @@ class AirlinerControllerTest {
 		String AirlinerId = "f3f00f67-4222-44a1-8bde-1c8c84755c46";
 
 		when(airlinerRepo.findById(AirlinerId))
-				.thenReturn(Optional.of(new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE)));
+			.thenReturn(
+				Optional.of(new AirlinerEntity("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE))
+			);
 		AirlinerDto dto = controller.getAirliner(AirlinerId);
 		AirlinerDto expected = new AirlinerDto("Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
 
@@ -95,10 +102,16 @@ class AirlinerControllerTest {
 		when(airlinerRepo.save(any())).thenReturn(entity);
 
 		AirlinerDto res = controller.createAirliner(airlinerDto);
-		AirlinerDto expected = new AirlinerDto(entity.getId(), entity.getName(), entity.getCode(), entity.getCountry(),
-				entity.getActive());
+		AirlinerDto expected = new AirlinerDto(
+			entity.getId(),
+			entity.getName(),
+			entity.getCode(),
+			entity.getCountry(),
+			entity.getActive()
+		);
 
 		assertEquals(expected, res);
 
 	}
+
 }

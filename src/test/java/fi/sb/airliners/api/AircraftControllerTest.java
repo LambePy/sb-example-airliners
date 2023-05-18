@@ -39,7 +39,13 @@ class AircraftControllerTest {
 	void createAircraft_saves_correct_data() {
 
 		String airlinerId = "f3f00f67-4222-44a1-8bde-1c8c84755c46";
-		AirlinerEntity airliner = new AirlinerEntity(airlinerId, "Finnair", "AY", "FIN", AirlinerStatus.ACTIVE);
+		AirlinerEntity airliner = new AirlinerEntity(
+			airlinerId,
+			"Finnair",
+			"AY",
+			"FIN",
+			AirlinerStatus.ACTIVE
+		);
 		when(airlinerRepo.findById(airlinerId)).thenReturn(Optional.of(airliner));
 
 		controller.createAircraft(new AircraftDto("A320NEO", "AIRBUS", airlinerId));

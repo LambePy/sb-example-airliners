@@ -22,18 +22,24 @@ import jakarta.validation.constraints.NotNull;
 @Service
 @Transactional
 public class AirlinerService {
+
 	private final AirlinerRepository airlinerRepo;
 	private final AircraftRepository aircraftRepo;
 
 	@Autowired
-	public AirlinerService(final AirlinerRepository airlinerRepo, final AircraftRepository aircraftRepo) {
+	public AirlinerService(
+		final AirlinerRepository airlinerRepo,
+		final AircraftRepository aircraftRepo
+	)
+	{
 		this.airlinerRepo = airlinerRepo;
 		this.aircraftRepo = aircraftRepo;
 	}
 
 	public AirlinerDto getAirliner(String airlinerId) {
-		AirlinerEntity airliner = airlinerRepo.findById(airlinerId)
-				.orElseThrow(() -> new NotFoundException(AirlinerEntity.class, airlinerId));
+		AirlinerEntity airliner = airlinerRepo
+			.findById(airlinerId)
+			.orElseThrow(() -> new NotFoundException(AirlinerEntity.class, airlinerId));
 		return airliner.toAirlinerDto();
 	}
 
@@ -51,4 +57,5 @@ public class AirlinerService {
 		List<AirlinerEntity> airliners = airlinerRepo.findAll();
 		return airliners.stream().map(AirlinerEntity::toAirlinerDto).toList();
 	}
+
 }

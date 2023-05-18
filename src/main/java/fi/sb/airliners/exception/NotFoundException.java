@@ -1,6 +1,7 @@
 package fi.sb.airliners.exception;
 
 public class NotFoundException extends AirlinerException {
+
 	private static final long serialVersionUID = 1L;
 
 	public NotFoundException(String msg, String id) {
@@ -9,6 +10,6 @@ public class NotFoundException extends AirlinerException {
 
 	public NotFoundException(Class<?> className, Object id) {
 		this(className.getName(), id.toString());
-
 	}
+
 }
